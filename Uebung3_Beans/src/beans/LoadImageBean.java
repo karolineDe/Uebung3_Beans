@@ -1,33 +1,34 @@
 package beans;
 
-import Catalano.Imaging.FastBitmap;
-import interfaces.IOable;
-
-import java.awt.event.ActionEvent;
-import java.io.StreamCorruptedException;
 import java.awt.Canvas;
-import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
 
 
-public class LoadImageBean {
+public class LoadImageBean extends Canvas implements Runnable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private Path path = null;
-	private static int XPREFSIZE = 400;
-	private static int YPREFSIZE = 400;
+	private transient String _path;
+	private transient BufferedImage _buffImage;
 	
 	public LoadImageBean(){
-		
-		
+		new Thread(this).start();
 	}
+	
+	private void loadImage(String filePath) {
+		
+		try{
+			_buffImage = ImageIO.read(new File(filePath));
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+	
 	
 	/**
 	 * Sets the fileName property
@@ -35,17 +36,8 @@ public class LoadImageBean {
 	 */
 	public void setFileName(String fileName){
 		
-		path = Paths.get(fileName);
-		
-		try
-		{	
-			InputStream in = Files.newInputStream(path);
-			setIcon(new ImageIcon(ImageIO.read(in)));
-			
-		} catch (IOException e) {
-			path = null;
-			setIcon(null);
-		}
+		_path = fileName;
+		new Thread(this).start();
 	}
 	
 	/**
@@ -54,15 +46,26 @@ public class LoadImageBean {
 	 */
 	public String getFileName(){
 		
-		if(path == null){
+		if(_path == null){
 			return "";
 		}else{
-			return path.toString();
+			return _path;
 		}
 	}
 	
-	public Dimension getPreferedSize(){
+	public void paint(Graphics g){
 		
-		return new Dimension(XPREFSIZE, YPREFSIZE);
+		g.drawImage(_buffImage, 0, 0, this);
+	}
+
+	@Override
+	public void run() {
+		
+		try{
+			loadImage(getFileName());
+			repaint();
+		}catch(Exception e){
+			e.printStackTrace();
+		}	
 	}
 }
