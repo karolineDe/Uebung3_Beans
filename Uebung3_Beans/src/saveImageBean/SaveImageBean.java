@@ -3,6 +3,7 @@ package saveImageBean;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.StreamCorruptedException;
 
 import javax.imageio.ImageIO;
 
@@ -37,8 +38,10 @@ public class SaveImageBean implements ImageListener{
 			_buffImage = e.getFastBitmap().toBufferedImage();
 			File outputFile = new File(_savePath + ".png");
 			ImageIO.write(_buffImage, "png", outputFile);
-		}catch(IOException ex){
-			ex.printStackTrace();
+		} catch (StreamCorruptedException exception) {
+            exception.printStackTrace();
+        } catch (IOException exception) {
+            exception.printStackTrace();
 		}
 		
 	}
