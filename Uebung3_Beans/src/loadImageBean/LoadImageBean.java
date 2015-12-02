@@ -1,4 +1,4 @@
-package beans;
+package loadImageBean;
 
 import java.awt.Canvas;
 import java.awt.Graphics;
