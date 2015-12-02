@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
@@ -14,7 +13,6 @@ public class LoadImageBean extends Canvas implements Runnable{
 
 	private static final long serialVersionUID = 1L;
 	
-//	private static final String DEFAULT_IMAGE_PLACEHOLDER_PATH = "image.png";
     private static final int DEFAULT_IMAGE_SIZE = 300;
 	
 	private transient String _path;
@@ -28,11 +26,14 @@ public class LoadImageBean extends Canvas implements Runnable{
 	
 	private void loadImage(String filePath) {
 		
-		try{
-			_buffImage = ImageIO.read(new File(filePath));
+		if(filePath != null && !filePath.isEmpty()){
 			
-		}catch (IOException e){
-			e.printStackTrace();
+			try{
+				_buffImage = ImageIO.read(new File(filePath));
+				
+			}catch (IOException e){
+				e.printStackTrace();
+			}
 		}
 	}
 	
