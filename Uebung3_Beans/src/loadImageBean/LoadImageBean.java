@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import Catalano.Imaging.FastBitmap;
-import interfaces.ImageEvent;
+import util.ImageEvent;
 import util.ImageEventHandler;
 
 

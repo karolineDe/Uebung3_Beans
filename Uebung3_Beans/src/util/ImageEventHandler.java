@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import interfaces.EventHandler;
-import interfaces.ImageEvent;
 import interfaces.ImageListener;
 
 public abstract class ImageEventHandler implements EventHandler<ImageListener, ImageEvent>{

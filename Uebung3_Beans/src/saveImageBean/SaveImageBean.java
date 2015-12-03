@@ -7,8 +7,8 @@ import java.io.StreamCorruptedException;
 
 import javax.imageio.ImageIO;
 
-import interfaces.ImageEvent;
 import interfaces.ImageListener;
+import util.ImageEvent;
 import util.ImageEventHandler;
 
 public class SaveImageBean extends ImageEventHandler implements ImageListener{
