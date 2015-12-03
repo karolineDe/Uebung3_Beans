@@ -9,8 +9,9 @@ import javax.imageio.ImageIO;
 
 import interfaces.ImageEvent;
 import interfaces.ImageListener;
+import util.ImageEventHandler;
 
-public class SaveImageBean implements ImageListener{
+public class SaveImageBean extends ImageEventHandler implements ImageListener{
 
 	private String _savePath = "";
 	private BufferedImage _buffImage;
@@ -35,7 +36,7 @@ public class SaveImageBean implements ImageListener{
 	public void onImage(ImageEvent e) {
 		
 		try{
-			_buffImage = e.getFastBitmap().toBufferedImage();
+			_buffImage = e.getImage();
 			File outputFile = new File(_savePath + ".png");
 			ImageIO.write(_buffImage, "png", outputFile);
 		} catch (StreamCorruptedException exception) {
@@ -43,6 +44,5 @@ public class SaveImageBean implements ImageListener{
         } catch (IOException exception) {
             exception.printStackTrace();
 		}
-		
 	}
 }

@@ -1,40 +1,21 @@
 package loadImageBean;
 
-import java.awt.Canvas;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import Catalano.Imaging.FastBitmap;
+import interfaces.ImageEvent;
+import util.ImageEventHandler;
 
-public class LoadImageBean extends Canvas implements Runnable{
 
-	private static final long serialVersionUID = 1L;
-	
-    private static final int DEFAULT_IMAGE_SIZE = 300;
+public class LoadImageBean extends ImageEventHandler implements Runnable{
 	
 	private transient String _path;
-	private transient BufferedImage _buffImage;
 	
 	public LoadImageBean(){
-
-        setSize(DEFAULT_IMAGE_SIZE, DEFAULT_IMAGE_SIZE);
-		new Thread(this).start();
-	}
-	
-	private void loadImage(String filePath) {
-		
-		if(filePath != null && !filePath.isEmpty()){
-			
-			try{
-				_buffImage = ImageIO.read(new File(filePath));
-				
-			}catch (IOException e){
-				e.printStackTrace();
-			}
-		}
 	}
 	
 	
@@ -60,20 +41,28 @@ public class LoadImageBean extends Canvas implements Runnable{
 			return _path;
 		}
 	}
-	
-	public void paint(Graphics g){
-		
-		g.drawImage(_buffImage, 0, 0, this);
-	}
 
 	@Override
 	public void run() {
 		
 		try{
-			loadImage(getFileName());
-			repaint();
+			BufferedImage bi = loadImage(getFileName());
+			ImageEvent imageEvent = new ImageEvent(this, bi);
+			notifyAllListeners(imageEvent);
 		}catch(Exception e){
 			e.printStackTrace();
 		}	
+	}
+	
+	private BufferedImage loadImage(String path){
+		
+		if(path != null && !path.isEmpty()){
+			try {
+				return ImageIO.read(new File(path));
+			} catch (IOException e) {				
+				e.printStackTrace();
+			}
+		}
+		return null;
 	}
 }

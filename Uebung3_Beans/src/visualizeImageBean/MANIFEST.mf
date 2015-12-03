@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+
+Name: visualizeImageBean/VisualizeImageBean.class
+Java-Bean: True
+

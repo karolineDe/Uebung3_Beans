@@ -1,14 +1,15 @@
 package interfaces;
 
-import Catalano.Imaging.FastBitmap;
-import util.Coordinate;
-
+import java.awt.image.BufferedImage;
 import java.util.EventObject;
 
 
 public class ImageEvent extends EventObject {
-    private FastBitmap fastBitmap;
-    private Coordinate coordinate;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private BufferedImage _buffImage;
 
     /**
      * Constructs a prototypical Event.
@@ -16,25 +17,13 @@ public class ImageEvent extends EventObject {
      * @param source The object on which the Event initially occurred.
      * @throws IllegalArgumentException if source is null.
      */
-    public ImageEvent(Object source, FastBitmap fastBitmap) {
+    public ImageEvent(Object source, BufferedImage bufferedImage) {
         super(source);
 
-        this.fastBitmap = fastBitmap;
+        this._buffImage = bufferedImage;
     }
 
-    public FastBitmap getFastBitmap() {
-        return fastBitmap;
-    }
-
-    public void setFastBitmap(FastBitmap fastBitmap) {
-        this.fastBitmap = fastBitmap;
-    }
-
-    public Coordinate getCoordinate() {
-        return coordinate;
-    }
-
-    public void setCoordinate(Coordinate coordinate) {
-        this.coordinate = coordinate;
+    public BufferedImage getImage() {
+        return _buffImage;
     }
 }
