@@ -1,4 +1,4 @@
-package interfaces;
+package util;
 
 import java.awt.image.BufferedImage;
 import java.util.EventObject;

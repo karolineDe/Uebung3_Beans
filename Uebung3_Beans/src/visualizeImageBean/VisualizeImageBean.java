@@ -7,8 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import interfaces.EventHandler;
-import interfaces.ImageEvent;
 import interfaces.ImageListener;
+import util.ImageEvent;
 
 
 public class VisualizeImageBean extends Canvas implements ImageListener, EventHandler<ImageListener, ImageEvent>{
