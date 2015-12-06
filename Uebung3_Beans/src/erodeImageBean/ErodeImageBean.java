@@ -1,9 +1,9 @@
 package erodeImageBean;
 
 import util.TargetDescriptor;
-import filter.ErodeFilter;
-import impl.ImageEvent;
-import impl.ImageEventHandler;
+import filters.ErodeFilter;
+import util.ImageEvent;
+import util.ImageEventHandler;
 import interfaces.ImageListener;
 import pipes.SupplierPipe;
 import util.Kernel;
@@ -12,17 +12,14 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyVetoException;
 import java.io.StreamCorruptedException;
 
-
-/**
- * Created by f00 on 03.12.15.
- */
-public class Erode extends ImageEventHandler implements ImageListener {
-    @TargetDescriptor
+public class ErodeImageBean extends ImageEventHandler implements ImageListener {
+    
+	@TargetDescriptor
     private Kernel _kernel = new Kernel();
 
     private ImageEvent _lastImageEvent;
 
-    public Erode() {
+    public ErodeImageBean() {
         super();
     }
 
@@ -37,7 +34,7 @@ public class Erode extends ImageEventHandler implements ImageListener {
 
     @Override
     @TargetDescriptor
-    public void onImageEvent(ImageEvent imageEvent) {
+    public void onImage(ImageEvent imageEvent) {
         try {
             _lastImageEvent = imageEvent;
 
@@ -57,7 +54,7 @@ public class Erode extends ImageEventHandler implements ImageListener {
 
     @Override
     protected void reload() {
-        if (_lastImageEvent != null) onImageEvent(_lastImageEvent);
+        if (_lastImageEvent != null) onImage(_lastImageEvent);
     }
 
     @Override

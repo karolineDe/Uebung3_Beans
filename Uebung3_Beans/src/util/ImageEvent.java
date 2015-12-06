@@ -1,29 +1,44 @@
 package util;
 
-import java.awt.image.BufferedImage;
 import java.util.EventObject;
+
+import javax.media.jai.PlanarImage;
 
 
 public class ImageEvent extends EventObject {
+
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private BufferedImage _buffImage;
+	private final PlanarImage _planarImage;
+    private final int _shiftX;
+    private final int _shiftY;
 
     /**
-     * Constructs a prototypical Event.
+     * Prototype Event
      *
-     * @param source The object on which the Event initially occurred.
-     * @throws IllegalArgumentException if source is null.
+     * @param source the Event-throwing object
+     * @param shiftX used to store shift for x
+     * @param shiftY used to store shift for y
+     * @throws IllegalArgumentException if source == null
      */
-    public ImageEvent(Object source, BufferedImage bufferedImage) {
+    public ImageEvent(Object source, PlanarImage planarImage, int shiftX, int shiftY) {
         super(source);
-
-        this._buffImage = bufferedImage;
+        _planarImage = planarImage;
+        _shiftX = shiftX;
+        _shiftY = shiftY;
     }
 
-    public BufferedImage getImage() {
-        return _buffImage;
+    public PlanarImage getImage() {
+        return _planarImage;
+    }
+
+    public int getShiftX() {
+        return _shiftX;
+    }
+
+    public int getShiftY() {
+        return _shiftY;
     }
 }
