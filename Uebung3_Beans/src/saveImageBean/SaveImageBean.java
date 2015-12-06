@@ -20,24 +20,24 @@ public class SaveImageBean extends ImageEventHandler implements ImageListener{
     private String _savePath = "out.png";
 	
 	private ImageEvent _imageEvent;
-	private String _imagePath = " ";
 	private String _fileEnding = "png";
+	
+	private static final String IMAGE_PATH = "imagePath";
 
 	public SaveImageBean(){
 		super();
 	}
 	
-
 	public String getSavePath() {
 		return _savePath;
 	}
 
 	public void setSavePath(String path) throws PropertyVetoException{
 		String oldSavePath = _savePath;
-		 fireVetoableChange(this, _imagePath, oldSavePath, path);
+		 fireVetoableChange(this, IMAGE_PATH, oldSavePath, path);
 
 		 _savePath = path;
-        firePropertyChange(this, _imagePath, oldSavePath, path);
+        firePropertyChange(this, IMAGE_PATH, oldSavePath, path);
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class SaveImageBean extends ImageEventHandler implements ImageListener{
 
             switch (propertyName) {
 
-                case "png": {
+                case IMAGE_PATH: {
                     FilePathVetoable.validate(evt);
                     break;
                 }
