@@ -11,14 +11,14 @@ public class FilePathVetoable {
     public static boolean validate(PropertyChangeEvent evt)
     throws PropertyVetoException {
 
-    	String path = evt.getPropertyName();
-    	
-        File file = new File(path);
-        if(!file.exists() || file.isDirectory()) {
-            String msg = evt.getPropertyName().toUpperCase() + " should target existing file.";
-            throw new PropertyVetoException(msg, evt);
-        }
+    	 String newPath = StringVetoable.validate(evt);
 
-        return true;
+         File file = new File(newPath);
+         if(!file.exists() || file.isDirectory()) {
+             String msg = evt.getPropertyName().toUpperCase() + " should target existing file.";
+             throw new PropertyVetoException(msg, evt);
+         }
+
+         return true;
     }
 }

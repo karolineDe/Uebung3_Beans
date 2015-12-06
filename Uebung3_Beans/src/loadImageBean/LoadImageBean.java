@@ -30,6 +30,7 @@ public class LoadImageBean extends ImageEventHandler{
     }
 
     public void setImagePath(String imagePath)throws PropertyVetoException {
+    	
         String temp = _imagePath;
         fireVetoableChange(this, IMAGE_PATH, temp, imagePath);
 
