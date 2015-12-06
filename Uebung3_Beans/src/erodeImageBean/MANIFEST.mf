@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+
+Name: erodeImageBean.ErodeImageBean.class
+Java-Bean: True
+

@@ -1,6 +1,5 @@
 package saveImageBean;
 
-import java.awt.Image;
 import java.beans.PropertyDescriptor;
 import java.beans.SimpleBeanInfo;
 
@@ -33,6 +32,5 @@ public class SaveImageBeanBeanInfo extends SimpleBeanInfo{
 			return null;
 		}
 	}
-
 }
->>>>>>> branch 'master' of https://github.com/karolineDe/Uebung3_Beans.git
+

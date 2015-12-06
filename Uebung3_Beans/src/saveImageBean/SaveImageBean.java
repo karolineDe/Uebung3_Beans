@@ -4,12 +4,14 @@ import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.io.StreamCorruptedException;
 
 import javax.imageio.ImageIO;
+import javax.media.jai.PlanarImage;
 
 import interfaces.ImageListener;
 import util.ImageEvent;
@@ -18,7 +20,7 @@ import util.ImageEventHandler;
 public class SaveImageBean extends ImageEventHandler implements ImageListener, PropertyChangeListener, Serializable {
 
 	private String _savePath = "";
-	private BufferedImage _buffImage;
+	private PlanarImage _buffImage;
 	private PropertyChangeSupport _pcs;
 
 	public SaveImageBean(String path) {
@@ -27,14 +29,14 @@ public class SaveImageBean extends ImageEventHandler implements ImageListener, P
 		_pcs.addPropertyChangeListener(this);
 	}
 
-	public SaveImageBean(String path, BufferedImage image) {
+	public SaveImageBean(String path, PlanarImage image) {
 		_savePath = path;
 		_buffImage = image;
 		_pcs = new PropertyChangeSupport(this);
 		_pcs.addPropertyChangeListener(this);
 	}
 
-	public SaveImageBean(BufferedImage image) {
+	public SaveImageBean(PlanarImage image) {
 		_buffImage = image;
 		_pcs = new PropertyChangeSupport(this);
 		_pcs.addPropertyChangeListener(this);
@@ -60,11 +62,11 @@ public class SaveImageBean extends ImageEventHandler implements ImageListener, P
 		_pcs.firePropertyChange("savePath", oldSavePath, newSavePath);
 	}
 
-	public BufferedImage getImage() {
+	public PlanarImage getImage() {
 		return _buffImage;
 	}
 
-	public void setImage(BufferedImage image) {
+	public void setImage(PlanarImage image) {
 		_buffImage = image;
 	}
 
@@ -99,5 +101,17 @@ public class SaveImageBean extends ImageEventHandler implements ImageListener, P
 			}
 		}
 
+	}
+
+	@Override
+	public void vetoableChange(PropertyChangeEvent evt) throws PropertyVetoException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void reload() {
+		// TODO Auto-generated method stub
+		
 	}
 }

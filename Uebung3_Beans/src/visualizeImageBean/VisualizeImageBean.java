@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.media.jai.PlanarImage;
+
 import interfaces.EventHandler;
 import interfaces.ImageListener;
 import util.ImageEvent;
@@ -18,14 +20,14 @@ public class VisualizeImageBean extends Canvas implements ImageListener, EventHa
 	
 	private int _width = 100;
 	private int _height = 100;
-	private BufferedImage _buffImage;
+	private PlanarImage _buffImage;
 	private static final List<ImageListener> IMAGE_LISTENER_LIST = new LinkedList<>();
 
 	public VisualizeImageBean() {
 		setSize(_width, _height);
 	}
 		
-	public VisualizeImageBean(BufferedImage image){
+	public VisualizeImageBean(PlanarImage image){
 		_buffImage = image;
 	}
 	
@@ -59,7 +61,7 @@ public class VisualizeImageBean extends Canvas implements ImageListener, EventHa
 	@Override
 	public void paint(Graphics g){
 		setSize(getImageWidth(),getImageHeight());
-		g.drawImage(_buffImage, 0, 0, this);
+		g.drawImage(_buffImage.getAsBufferedImage(), 0, 0, this);
 	}
 	
 	/**

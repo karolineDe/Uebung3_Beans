@@ -30,7 +30,9 @@ public class ImageEvent extends EventObject {
         _shiftY = shiftY;
     }
 
-    public PlanarImage getImage() {
+   
+
+	public PlanarImage getImage() {
         return _planarImage;
     }
 
