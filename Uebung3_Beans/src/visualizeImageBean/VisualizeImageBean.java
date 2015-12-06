@@ -4,6 +4,12 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.beans.PropertyVetoException;
+import java.beans.VetoableChangeListener;
+import java.beans.VetoableChangeSupport;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,80 +18,123 @@ import javax.media.jai.PlanarImage;
 import interfaces.EventHandler;
 import interfaces.ImageListener;
 import util.ImageEvent;
+import util.IntegerVetoable;
+import util.TargetDescriptor;
 
 
-public class VisualizeImageBean extends Canvas implements ImageListener, EventHandler<ImageListener, ImageEvent>{
+public class VisualizeImageBean extends Canvas implements ImageListener, VetoableChangeListener, PropertyChangeListener {
 
 	private static final long serialVersionUID = 1L;
 	
-	private int _width = 100;
-	private int _height = 100;
-	private PlanarImage _buffImage;
-	private static final List<ImageListener> IMAGE_LISTENER_LIST = new LinkedList<>();
-
+	@TargetDescriptor private int _width = 100;
+	@TargetDescriptor private int _height = 100;
+	private transient ImageEvent _imageEvent;
+	private final PropertyChangeSupport _pcs = new PropertyChangeSupport(this);
+    private final VetoableChangeSupport _vcs = new VetoableChangeSupport(this);
+	
 	public VisualizeImageBean() {
-		setSize(_width, _height);
-	}
-		
-	public VisualizeImageBean(PlanarImage image){
-		_buffImage = image;
-	}
-	
-	@Override
-	public void onImage(ImageEvent event) {
-		
-		_buffImage = event.getImage();
-		repaint();
-	}
-
-	@Override
-	public void addImageListener(ImageListener listener) {
-		
-		IMAGE_LISTENER_LIST.add(listener);
-	}
-
-	@Override
-	public void removeImageListener(ImageListener listener) {
-		
-		IMAGE_LISTENER_LIST.remove(listener);
-	}
-
-	@Override
-	public void notifyAllListeners(ImageEvent event) {
-		
-		for(ImageListener imageListener : IMAGE_LISTENER_LIST){
-			imageListener.onImage(event);
-		}
-	}
-	
-	@Override
-	public void paint(Graphics g){
-		setSize(getImageWidth(),getImageHeight());
-		g.drawImage(_buffImage.getAsBufferedImage(), 0, 0, this);
+		setSize(getWidth(), getHeight());
 	}
 	
 	/**
 	 * Getter and Setter
 	 */
-	public int getImageWidth(){
-		if(_buffImage != null){
-			_width = _buffImage.getWidth();
-		}
-		return _width;
+	@Override
+    public int getWidth() {
+        return _width;
+    }
+	
+	 public void setWidth(int width) throws PropertyVetoException {
+		 
+        int temp = _width;
+        fireVetoableChange(this, "widht", temp, width);
+
+        _width = width;
+        firePropertyChange(this, "width", temp, width);
+    }
+	
+	
+	@Override
+	@TargetDescriptor
+	public void onImage(ImageEvent event) {
+		
+		_imageEvent = event;
+		
+		if (event != null && event.getImage() != null) {
+            repaint();
+        }
 	}
 	
-	public void setImageWidth(int width){
-		_width = width;
+	@Override
+	public void paint(Graphics g){
+		setSize(getWidth(),getHeight());
+		g.drawImage(_imageEvent.getImage().getAsBufferedImage(), 0, 0, this);
 	}
 	
-	public int getImageHeight(){
-		if(_buffImage != null){
-			_height = _buffImage.getHeight();
-		}
-		return _height;
-	}
+	 protected void reload() {
+        if (_imageEvent != null) onImage(_imageEvent);
+    }
 	
-	public void setImageHeight(int height){
-		_height = height;
-	}
+	
+	
+	
+	
+	
+	@Override
+    public int getHeight() {
+        return _height;
+    }
+	
+	public void setHeight(int height)
+    throws PropertyVetoException {
+        int temp = _height;
+        fireVetoableChange(this, "height", temp, height);
+
+        _height = height;
+        firePropertyChange(this, "height", temp, height);
+    }
+	
+	 protected void firePropertyChange(Object source, String propertyName,Object oldValue, Object newValue ) {
+
+        _pcs.firePropertyChange(
+            new PropertyChangeEvent(source, propertyName, oldValue, newValue)
+        );
+    }
+
+	 protected void fireVetoableChange(Object source,String propertyName, Object oldValue, Object newValue) throws PropertyVetoException {
+
+        _vcs.fireVetoableChange(
+            new PropertyChangeEvent(source, propertyName, oldValue, newValue)
+        );
+    }
+	 
+	@Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        Object source = evt.getSource();
+
+        if (source instanceof VisualizeImageBean) {
+            ((VisualizeImageBean) source).reload();
+        }
+    }
+	
+	@Override
+    public void vetoableChange(PropertyChangeEvent evt) throws PropertyVetoException {
+        String propertyName = evt.getPropertyName();
+
+        if (propertyName != null) {
+
+            switch (propertyName) {
+
+                case "width": {
+                    IntegerVetoable.validate(evt, 0);
+                    break;
+                }
+
+                case "height": {
+                    IntegerVetoable.validate(evt, 0);
+                    break;
+                }
+            }
+        }
+    }
 }
