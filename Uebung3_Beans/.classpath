@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue03/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Signal.jar"/>
 	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue03/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Statistics.jar"/>
 	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue03/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Vision.jar"/>
+	<classpathentry kind="lib" path="C:/Libraries/jai_core.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
