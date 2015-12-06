@@ -15,28 +15,27 @@ import util.ImageEventHandler;
 import util.TargetDescriptor;
 
 public class SaveImageBean extends ImageEventHandler implements ImageListener{
-
-	@TargetDescriptor
-    private String _savePath = "out.png";
 	
+	private static final String IMAGE_PATH = "imagePath";
 	private ImageEvent _imageEvent;
 	private String _fileEnding = "png";
 	
-	private static final String IMAGE_PATH = "imagePath";
+	@TargetDescriptor
+    private String _imagePath = "out." + _fileEnding;
 
 	public SaveImageBean(){
 		super();
 	}
 	
-	public String getSavePath() {
-		return _savePath;
+	public String getImagePath() {
+		return _imagePath;
 	}
 
-	public void setSavePath(String path) throws PropertyVetoException{
-		String oldSavePath = _savePath;
-		 fireVetoableChange(this, IMAGE_PATH, oldSavePath, path);
+	public void setImagePath(String path) throws PropertyVetoException{
+		String oldSavePath = _imagePath;
+		fireVetoableChange(this, IMAGE_PATH, oldSavePath, path);
 
-		 _savePath = path;
+		 _imagePath = path;
         firePropertyChange(this, IMAGE_PATH, oldSavePath, path);
 	}
 
@@ -48,7 +47,7 @@ public class SaveImageBean extends ImageEventHandler implements ImageListener{
         if (event != null) {
             try {
                 BufferedImage image = event.getImage().getAsBufferedImage();
-                ImageIO.write(image, _fileEnding, new File(_savePath));
+                ImageIO.write(image, _fileEnding, new File(_imagePath));
             } catch (IOException e) {
                 e.printStackTrace();
             }
