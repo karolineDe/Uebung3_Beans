@@ -13,7 +13,18 @@ public class DilateImage extends ImageEventHandler implements Serializable {
 	private int _radius;
 	
 	public DilateImage(){
+		_radius = 1;
 		
+		/* generates new Dilatation with radius 1 */
+		_dilatation = new Dilatation(); 
+	}
+	
+	public void setRadius(int radius){
+		_radius = radius;
+	}
+	
+	public int getRadius (){
+		return _radius;
 	}
 	
 }
