@@ -10,7 +10,6 @@ import javax.media.jai.PlanarImage;
 import interfaces.Readable;
 import interfaces.Writeable;
 import util.ImageEvent;
-import util.JAIMethods;
 import util.Kernel;
 
 /**
