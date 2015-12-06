@@ -3,15 +3,15 @@ package loadImageBean;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 
-import Catalano.Imaging.FastBitmap;
 import util.ImageEvent;
 import util.ImageEventHandler;
 
 
-public class LoadImageBean extends ImageEventHandler implements Runnable{
+public class LoadImageBean extends ImageEventHandler implements Runnable, Serializable{
 	
 	private transient String _path;
 	
