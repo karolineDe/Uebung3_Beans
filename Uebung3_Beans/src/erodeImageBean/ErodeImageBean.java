@@ -57,8 +57,9 @@ public class ErodeImageBean extends ImageEventHandler implements ImageListener {
         if (_lastImageEvent != null) onImage(_lastImageEvent);
     }
 
-    @Override
-    public void vetoableChange(PropertyChangeEvent evt) throws PropertyVetoException {
-        //TODO
-    }
+	@Override
+	public void vetoableChange(PropertyChangeEvent evt) throws PropertyVetoException {
+		// TODO Auto-generated method stub
+		
+	}
 }
