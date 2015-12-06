@@ -1,10 +1,13 @@
 package filters;
 
-import interfaces.Writeable;
-
+import java.awt.image.renderable.ParameterBlock;
 import java.security.InvalidParameterException;
 
+import javax.media.jai.JAI;
+import javax.media.jai.PlanarImage;
+
 import interfaces.Readable;
+import interfaces.Writeable;
 import util.ImageEvent;
 
 public class ThresholdFilter extends EnhancedDataTransformationFilter<ImageEvent> {
@@ -34,10 +37,7 @@ public class ThresholdFilter extends EnhancedDataTransformationFilter<ImageEvent
         ParameterBlock pb = prepareParameterBlock(imageEvent.getImage(), _parameters);
 
         //Creating a new Planar Image according to parameter block, applying JAI Operator (filter).
-        PlanarImage newImage = JAI.create(
-            JAIOperators.THRESHOLD.getOperatorValue(),
-            pb
-        );
+        PlanarImage newImage = JAI.create("threshold", pb);
 
         //Returning new event.
         return new ImageEvent(this, newImage, imageEvent.getShiftX(), imageEvent.getShiftY());

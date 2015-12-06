@@ -4,6 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyVetoException;
 import java.io.StreamCorruptedException;
 
+import filters.ThresholdFilter;
 import interfaces.ImageListener;
 import pipes.SupplierPipe;
 import util.ImageEvent;

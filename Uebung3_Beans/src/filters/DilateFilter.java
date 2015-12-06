@@ -38,7 +38,7 @@ public class DilateFilter extends EnhancedDataTransformationFilter<ImageEvent>{
     @Override
     protected ImageEvent process(ImageEvent imageEvent) {
         //Dilating source image.
-        PlanarImage dilatedImage = performTransformationStep(JAIMethods.DILATE, imageEvent.getImage());
+        PlanarImage dilatedImage = performTransformationStep("dilate", imageEvent.getImage());
 
         //Returning new event.
         return new ImageEvent(this, dilatedImage, imageEvent.getShiftX(), imageEvent.getShiftY());
@@ -51,11 +51,8 @@ public class DilateFilter extends EnhancedDataTransformationFilter<ImageEvent>{
      * @param image Image that will be transformed by given JAIOperator.
      * @return Transformed Planar image
      */
-    private PlanarImage performTransformationStep(JAIMethods operator, PlanarImage image) {
+    private PlanarImage performTransformationStep(String operator, PlanarImage image) {
         //Transforming image according to the given JAI operator.
-        return JAI.create(
-            operator.getOperatorValue(),
-            new ParameterBlock().add(_kernel).addSource(image)
-        );
+        return JAI.create(operator, new ParameterBlock().add(_kernel).addSource(image));
     }
 }

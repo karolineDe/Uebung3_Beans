@@ -41,7 +41,7 @@ public class ErodeFilter  extends EnhancedDataTransformationFilter<ImageEvent> {
     @Override
     protected ImageEvent process(ImageEvent imageEvent) {
         //Eroding source image.
-        PlanarImage erodedImage = performTransformationStep(JAIMethods.ERODE, imageEvent.getImage());
+        PlanarImage erodedImage = performTransformationStep("erode", imageEvent.getImage());
 
         //Returning new event.
         return new ImageEvent(this, erodedImage, imageEvent.getShiftX(), imageEvent.getShiftY());
@@ -54,11 +54,8 @@ public class ErodeFilter  extends EnhancedDataTransformationFilter<ImageEvent> {
      * @param image Image that will be transformed by given JAIOperator.
      * @return Transformed Planar image
      */
-    private PlanarImage performTransformationStep(JAIMethods operator, PlanarImage image) {
+    private PlanarImage performTransformationStep(String operator, PlanarImage image) {
         //Transforming image according to the given JAI operator.
-        return JAI.create(
-            operator.getOperatorValue(),
-            new ParameterBlock().add(_kernel).addSource(image)
-        );
+        return JAI.create(operator, new ParameterBlock().add(_kernel).addSource(image));
     }
 }
