@@ -28,8 +28,8 @@ public class SimpleTest extends Canvas implements Serializable {
 	    return currentColor;
 	  }
 
-	  public void setCurrentColor(String flavor) {
-	    this.currentColor = flavor;
+	  public void setCurrentColor(String color) {
+	    this.currentColor = color;
 	    repaint();
 	  }
 
