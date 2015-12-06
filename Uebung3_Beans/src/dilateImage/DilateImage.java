@@ -1,30 +1,64 @@
 package dilateImage;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyVetoException;
 import java.io.Serializable;
+import java.io.StreamCorruptedException;
 
-import Catalano.Imaging.FastBitmap;
-import Catalano.Imaging.Filters.Dilatation;
+import filters.DilateFilter;
+import interfaces.ImageListener;
+import pipes.SupplierPipe;
+import util.ImageEvent;
 import util.ImageEventHandler;
+import util.Kernel;
+import util.TargetDescriptor;
 
-public class DilateImage extends ImageEventHandler implements Serializable {
+public class DilateImage extends ImageEventHandler implements ImageListener, Serializable {
 
-	private FastBitmap _image;
-	private Dilatation _dilatation;
-	private int _radius;
-	
-	public DilateImage(){
-		_radius = 1;
-		
-		/* generates new Dilatation with radius 1 */
-		_dilatation = new Dilatation(); 
+	@TargetDescriptor
+	private Kernel _kernel = new Kernel();
+
+	private ImageEvent _lastImageEvent;
+
+	public DilateImage() {
+		super();
 	}
-	
-	public void setRadius(int radius){
-		_radius = radius;
+
+	public Kernel getKernel() {
+		return _kernel;
 	}
-	
-	public int getRadius (){
-		return _radius;
+
+	public void setKernel(Kernel kernel) {
+		_kernel = kernel;
+		reload();
 	}
-	
+
+	@Override
+	public void vetoableChange(PropertyChangeEvent evt) throws PropertyVetoException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	@TargetDescriptor
+	public void onImage(ImageEvent e) {
+		try {
+			_lastImageEvent = e;
+
+			DilateFilter dilateFilter = new DilateFilter(new SupplierPipe<>(e), _kernel);
+
+			ImageEvent result = dilateFilter.read();
+
+			notifyAllListeners(result);
+		} catch (StreamCorruptedException se) {
+			se.printStackTrace();
+			notifyAllListeners(null);
+		}
+	}
+
+	@Override
+	protected void reload() {
+		if (_lastImageEvent != null) onImage(_lastImageEvent);
+	}
+
 }
