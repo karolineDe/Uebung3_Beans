@@ -50,12 +50,7 @@ public abstract class ImageEventHandler implements EventHandler<ImageListener, I
 
 	    protected abstract void reload();
 
-	    protected void firePropertyChange(
-	        Object source,
-	        String propertyName,
-	        Object oldValue,
-	        Object newValue
-	    ) {
+	    protected void firePropertyChange(Object source,String propertyName, Object oldValue, Object newValue ) {
 
 	        _pcs.firePropertyChange(
 	            new PropertyChangeEvent(source, propertyName, oldValue, newValue)
@@ -70,12 +65,7 @@ public abstract class ImageEventHandler implements EventHandler<ImageListener, I
 	        _pcs.removePropertyChangeListener(pcl);
 	    }
 
-	    protected void fireVetoableChange(
-	        Object source,
-	        String propertyName,
-	        Object oldValue,
-	        Object newValue
-	    ) throws PropertyVetoException {
+	    protected void fireVetoableChange(Object source, String propertyName, Object oldValue, Object newValue) throws PropertyVetoException {
 
 	        _vcs.fireVetoableChange(
 	            new PropertyChangeEvent(source, propertyName, oldValue, newValue)
