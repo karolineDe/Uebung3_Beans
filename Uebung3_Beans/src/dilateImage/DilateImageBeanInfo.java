@@ -1,20 +1,14 @@
 package dilateImage;
 
-import java.beans.PropertyDescriptor;
-import java.beans.SimpleBeanInfo;
+import dilateImage.DilateImage;
+import interfaces.ImageListener;
+import util.AbstractBeanInfo;
+import util.ImageEvent;
 
-public class DilateImageBeanInfo extends SimpleBeanInfo {
+public class DilateImageBeanInfo extends AbstractBeanInfo<DilateImage, ImageEvent, ImageListener> {
 
-	@Override
-	public PropertyDescriptor[] getPropertyDescriptors(){
-		
-		try{
-			PropertyDescriptor propDesc = new PropertyDescriptor("radius", DilateImage.class);
-			return new PropertyDescriptor[]{propDesc};
-		}catch(Exception e){
-			e.printStackTrace();
-			return null;
-		}
+	public DilateImageBeanInfo() {
+		super(DilateImage.class, ImageEvent.class, ImageListener.class);
 	}
-	
+
 }
