@@ -67,19 +67,17 @@ public class VisualizeImageBean extends Canvas implements ImageListener, Vetoabl
 	
 	@Override
 	public void paint(Graphics g){
-		setSize(getWidth(),getHeight());
-		g.drawImage(_imageEvent.getImage().getAsBufferedImage(), 0, 0, this);
+		setSize(getWidth(), getHeight());
+
+        if (_imageEvent != null && _imageEvent.getImage() != null) {
+            g.drawImage(_imageEvent.getImage().getAsBufferedImage(), 0, 0, this);
+        }
 	}
 	
 	 protected void reload() {
         if (_imageEvent != null) onImage(_imageEvent);
     }
-	
-	
-	
-	
-	
-	
+
 	@Override
     public int getHeight() {
         return _height;

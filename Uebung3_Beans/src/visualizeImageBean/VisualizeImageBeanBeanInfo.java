@@ -1,38 +1,30 @@
 package visualizeImageBean;
 
-import java.awt.Image;
+import java.beans.EventSetDescriptor;
+import java.beans.MethodDescriptor;
 import java.beans.PropertyDescriptor;
 import java.beans.SimpleBeanInfo;
 
+import util.MethodHelper;
+import util.PropertyHelper;
+
 public class VisualizeImageBeanBeanInfo extends SimpleBeanInfo{
 	
-//	public Image getIcon(int iconType){
-//		switch ( iconType )
-//	      {
-//	         case ICON_MONO_16x16:
-//	            return loadImage( "VisualizeImageIcon.gif" );
-//	         case ICON_MONO_32x32:
-//	            return loadImage( "VisualizeImageIcon.gif" );
-//	         case ICON_COLOR_16x16:
-//	            return loadImage( "VisualizeImageIcon.gif" );
-//	         case ICON_COLOR_32x32:
-//	            return loadImage( "VisualizeImageIcon.gif" );
-//	         default:
-//	            return null;
-//	      }
-//	}
+	public VisualizeImageBeanBeanInfo() {
+    }
 
-	@Override
-	public PropertyDescriptor[] getPropertyDescriptors(){
-		
-		try{
-			PropertyDescriptor pd1 = new PropertyDescriptor("width", VisualizeImageBean.class);
-			PropertyDescriptor pd2 = new PropertyDescriptor("height", VisualizeImageBean.class);
-			
-			return new PropertyDescriptor[]{pd1, pd2};
-		}catch(Exception e){
-			e.printStackTrace();
-			return null;
-		}
-	}
+    @Override
+    public PropertyDescriptor[] getPropertyDescriptors() {
+        return PropertyHelper.getPropertyDescriptors(VisualizeImageBean.class);
+    }
+
+    @Override
+    public EventSetDescriptor[] getEventSetDescriptors() {
+        return new EventSetDescriptor[]{};
+    }
+
+    @Override
+    public MethodDescriptor[] getMethodDescriptors() {
+        return MethodHelper.getMethodDescriptors(VisualizeImageBean.class);
+    }
 }

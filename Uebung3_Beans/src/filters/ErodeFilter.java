@@ -12,9 +12,7 @@ import interfaces.Writeable;
 import util.ImageEvent;
 import util.Kernel;
 
-/**
- * Created by f00 on 03.12.15.
- */
+
 public class ErodeFilter  extends EnhancedDataTransformationFilter<ImageEvent> {
 
     private final KernelJAI _kernel;

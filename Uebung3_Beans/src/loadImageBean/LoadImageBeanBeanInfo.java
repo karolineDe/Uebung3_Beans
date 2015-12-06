@@ -1,36 +1,26 @@
 package loadImageBean;
 
-import java.awt.Image;
+import java.beans.MethodDescriptor;
 import java.beans.PropertyDescriptor;
 import java.beans.SimpleBeanInfo;
 
+import util.PropertyHelper;
+
 public class LoadImageBeanBeanInfo extends SimpleBeanInfo{
 	
-//	public Image getIcon(int iconType){
-//		switch ( iconType )
-//	      {
-//	         case ICON_MONO_16x16:
-//	            return loadImage( "LoadImageIcon.gif" );
-//	         case ICON_MONO_32x32:
-//	            return loadImage( "LoadImageIcon.gif" );
-//	         case ICON_COLOR_16x16:
-//	            return loadImage( "LoadImageIcon.gif" );
-//	         case ICON_COLOR_32x32:
-//	            return loadImage( "LoadImageIcon.gif" );
-//	         default:
-//	            return null;
-//	      }
-//	}
+	public class ImageLoaderBeanInfo extends SimpleBeanInfo {
 
-	@Override
-	public PropertyDescriptor[] getPropertyDescriptors(){
-		
-		try{
-			PropertyDescriptor propDesc = new PropertyDescriptor("path", LoadImageBean.class);
-			return new PropertyDescriptor[]{propDesc};
-		}catch(Exception e){
-			e.printStackTrace();
-			return null;
-		}
+	    public ImageLoaderBeanInfo() {
+	    }
+
+	    @Override
+	    public PropertyDescriptor[] getPropertyDescriptors() {
+	        return PropertyHelper.getPropertyDescriptors(LoadImageBean.class);
+	    }
+
+	    @Override
+	    public MethodDescriptor[] getMethodDescriptors() {
+	        return new MethodDescriptor[]{};
+	    }
 	}
 }

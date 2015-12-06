@@ -1,11 +1,9 @@
 package loadImageBean;
 
-import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 import javax.media.jai.PlanarImage;
@@ -31,8 +29,7 @@ public class LoadImageBean extends ImageEventHandler{
         return _imagePath;
     }
 
-    public void setImagePath(String imagePath)
-    throws PropertyVetoException {
+    public void setImagePath(String imagePath)throws PropertyVetoException {
         String temp = _imagePath;
         fireVetoableChange(this, IMAGE_PATH, temp, imagePath);
 
