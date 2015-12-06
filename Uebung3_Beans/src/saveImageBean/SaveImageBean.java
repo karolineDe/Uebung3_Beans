@@ -74,6 +74,4 @@ public class SaveImageBean extends ImageEventHandler implements ImageListener{
             }
         }
     }
-
-	
 }
