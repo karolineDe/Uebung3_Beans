@@ -2,17 +2,17 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="C:/Libraries/jai_core.jar"/>
-	<classpathentry kind="lib" path="C:/Libraries/Catalano.Framework.1.5.Libs.and.Docs/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Core.jar"/>
-	<classpathentry kind="lib" path="C:/Libraries/Catalano.Framework.1.5.Libs.and.Docs/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Fuzzy.jar"/>
-	<classpathentry kind="lib" path="C:/Libraries/Catalano.Framework.1.5.Libs.and.Docs/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Graph.jar"/>
-	<classpathentry kind="lib" path="C:/Libraries/Catalano.Framework.1.5.Libs.and.Docs/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Image.jar"/>
-	<classpathentry kind="lib" path="C:/Libraries/Catalano.Framework.1.5.Libs.and.Docs/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.IO.jar"/>
-	<classpathentry kind="lib" path="C:/Libraries/Catalano.Framework.1.5.Libs.and.Docs/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.MachineLearning.jar"/>
-	<classpathentry kind="lib" path="C:/Libraries/Catalano.Framework.1.5.Libs.and.Docs/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Math.jar"/>
-	<classpathentry kind="lib" path="C:/Libraries/Catalano.Framework.1.5.Libs.and.Docs/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Neuro.jar"/>
-	<classpathentry kind="lib" path="C:/Libraries/Catalano.Framework.1.5.Libs.and.Docs/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Signal.jar"/>
-	<classpathentry kind="lib" path="C:/Libraries/Catalano.Framework.1.5.Libs.and.Docs/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Statistics.jar"/>
-	<classpathentry kind="lib" path="C:/Libraries/Catalano.Framework.1.5.Libs.and.Docs/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Vision.jar"/>
+	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue03/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Core.jar"/>
+	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue03/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Fuzzy.jar"/>
+	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue03/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Graph.jar"/>
+	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue03/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Image.jar"/>
+	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue03/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.IO.jar"/>
+	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue03/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.MachineLearning.jar"/>
+	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue03/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Math.jar"/>
+	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue03/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Neuro.jar"/>
+	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue03/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Signal.jar"/>
+	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue03/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Statistics.jar"/>
+	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue03/Catalano Framework 1.5 (Libs and Docs)/Libs/Catalano.Vision.jar"/>
+	<classpathentry kind="lib" path="E:/FHV/Semester 5/Systemarchitekturen/Übungen/Ue02/jai_core.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
