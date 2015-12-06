@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 
-Name: saveImageBean/SaveImageBean.class
+Name: saveImageBean.SaveImageBean.class
 Java-Bean: True
 

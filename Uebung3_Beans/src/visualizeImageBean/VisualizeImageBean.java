@@ -15,8 +15,8 @@ public class VisualizeImageBean extends Canvas implements ImageListener, EventHa
 
 	private static final long serialVersionUID = 1L;
 	
-	private int _width = 200;
-	private int _height = 200;
+	private int _width = 100;
+	private int _height = 100;
 	private BufferedImage _buffImage;
 	private static final List<ImageListener> IMAGE_LISTENER_LIST = new LinkedList<>();
 
@@ -57,7 +57,7 @@ public class VisualizeImageBean extends Canvas implements ImageListener, EventHa
 	
 	@Override
 	public void paint(Graphics g){
-		setSize(_width,_height);
+		setSize(getImageWidth(),getImageHeight());
 		g.drawImage(_buffImage, 0, 0, this);
 	}
 	
@@ -65,15 +65,23 @@ public class VisualizeImageBean extends Canvas implements ImageListener, EventHa
 	 * Getter and Setter
 	 */
 	public int getImageWidth(){
+		if(_buffImage != null){
+			_width = _buffImage.getWidth();
+		}
 		return _width;
 	}
+	
 	public void setImageWidth(int width){
 		_width = width;
 	}
 	
 	public int getImageHeight(){
+		if(_buffImage != null){
+			_height = _buffImage.getHeight();
+		}
 		return _height;
 	}
+	
 	public void setImageHeight(int height){
 		_height = height;
 	}
