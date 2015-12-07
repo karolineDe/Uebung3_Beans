@@ -15,50 +15,50 @@ import util.TargetDescriptor;
 
 public class DilateImage extends ImageEventHandler implements ImageListener, Serializable {
 
-	@TargetDescriptor
-	private Kernel _kernel = new Kernel();
+	 @TargetDescriptor
+	    private Kernel _kernel = new Kernel();
 
-	private ImageEvent _lastImageEvent;
+	    private ImageEvent _imageEvent;
 
-	public DilateImage() {
-		super();
+	    public DilateImage() {
+	    }
+
+	    public Kernel getKernel() {
+	        return _kernel;
+	    }
+
+	    public void setKernel(Kernel kernel) {
+	        _kernel = kernel;
+	        reload();
+	    }
+
+	    @Override
+	    @TargetDescriptor
+	    public void onImage(ImageEvent imageEvent) {
+	        try {
+	            _imageEvent = imageEvent;
+
+	            DilateFilter dilateFilter = new DilateFilter(
+	                new SupplierPipe<>(imageEvent),
+	                _kernel
+	            );
+
+	            ImageEvent result = dilateFilter.read();
+
+	            notifyAllListeners(result);
+	        } catch (StreamCorruptedException e) {
+	            e.printStackTrace();
+	            notifyAllListeners(null);
+	        }
+	    }
+
+	    @Override
+	    protected void reload() {
+	        if (_imageEvent != null) onImage(_imageEvent);
+	    }
+
+	    @Override
+	    public void vetoableChange(PropertyChangeEvent evt) throws PropertyVetoException {
+	        //TODO
+	    }
 	}
-
-	public Kernel getKernel() {
-		return _kernel;
-	}
-
-	public void setKernel(Kernel kernel) {
-		_kernel = kernel;
-		reload();
-	}
-
-	@Override
-	public void vetoableChange(PropertyChangeEvent evt) throws PropertyVetoException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	@TargetDescriptor
-	public void onImage(ImageEvent e) {
-		try {
-			_lastImageEvent = e;
-
-			DilateFilter dilateFilter = new DilateFilter(new SupplierPipe<>(e), _kernel);
-
-			ImageEvent result = dilateFilter.read();
-
-			notifyAllListeners(result);
-		} catch (StreamCorruptedException se) {
-			se.printStackTrace();
-			notifyAllListeners(null);
-		}
-	}
-
-	@Override
-	protected void reload() {
-		if (_lastImageEvent != null) onImage(_lastImageEvent);
-	}
-
-}
